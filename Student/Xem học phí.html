@@ -11,15 +11,53 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
-<script>
-</script>
 <style>
-</style>
+  #snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #D6EAF8;
+  color: #000000;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%; 
+  transform: translateX(-50%); 
+  bottom: 30%;
+  font-size: 17px;
+}
+  
+  #snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  @-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-webkit-keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+  </style>
 
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color:#D6EAF8 ">
   <a class="navbar-brand text-primary" href="#" style="font-family: 'Yeseva One', cursive;font-size:23px;"><img
       src="https://www.svgrepo.com/show/376074/go-back.svg" width="25px" style="margin: 20px;"></a>
-      <a style="margin-left: 45%; font-size: 30px;">Tuition</a>
+     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item dropdown">
@@ -33,6 +71,7 @@
 </nav>
 
 <body style="font-family: 'Times New Roman', Times, serif; font-size: 20px; ">
+  <a style="margin-left: 45%; font-size: 30px;">Tuition</a>
         <table class="table" style="margin-top: 6%;">
           <thead>
             <tr>
@@ -54,20 +93,21 @@
               <td>Chưa đóng</td>
             </tr>
           </tbody>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>57892</td>
-              <td>1.000.000</td>
-              <td>09-08-2024</td>
-              <td>09-08-2024</td>
-              <td>Chưa đóng</td>
-            </tr>
-          </tbody>
         </table>
-      </div>
-    </div>
-  </div>
+        <br> <br>
+        <button onclick="showToast()" class=" btn btn-primary" type="button" style="margin-left: 50%;">Thanh toán</button> 
+        <div id="snackbar">  <div class=" mb-3">
+          Hãy nhập mã OTP của bạn, để tiếp tục thanh toán học phí
+          <label class="small mb-1" for="OTP">OTP</label>
+          <input class="form-control text-center" id="OTP" type="text" value="" maxlength="6" min="0" oninput="this.value = Math.abs(this.value)">
+        </div>
+    <button class="button">Gửi</button></div>
+        <script>
+          function showToast() {
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 50000);
+          }
+          </script>
   </body>
   </html>
-  
